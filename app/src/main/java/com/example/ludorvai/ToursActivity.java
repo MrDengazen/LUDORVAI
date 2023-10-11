@@ -11,13 +11,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 
 import java.util.Date;
 
 public class ToursActivity extends Activity {
-    LocationManager locationManager;
+    TextView tvEnabledGPS;
+    TextView tvStatusGPS;
+    TextView tvLocationGPS;
+    TextView tvEnabledNet;
+    TextView tvStatusNet;
+    TextView tvLocationNet;
+
+    private LocationManager locationManager;
     StringBuilder sbGPS = new StringBuilder();
     StringBuilder sbNet = new StringBuilder();
 
@@ -27,24 +35,22 @@ public class ToursActivity extends Activity {
         setContentView(R.layout.tours);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ImageButton button_main = findViewById(R.id.back);
+        tvEnabledGPS = (TextView) findViewById(R.id.tvEnabledGPS);
+        tvStatusGPS = (TextView) findViewById(R.id.tvStatusGPS);
+        tvLocationGPS = (TextView) findViewById(R.id.tvLocationGPS);
+        tvEnabledNet = (TextView) findViewById(R.id.tvEnabledNet);
+        tvStatusNet = (TextView) findViewById(R.id.tvStatusNet);
+        tvLocationNet = (TextView) findViewById(R.id.tvLocationNet);
         button_main.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
+
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onResume() {
         super.onResume();
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                 1000 * 10, 10, locationListener);
         locationManager.requestLocationUpdates(

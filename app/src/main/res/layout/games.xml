@@ -18,7 +18,7 @@
                 android:id="@+id/back"
                 android:layout_width="80dp"
                 android:layout_height="70dp"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/back"
                 android:elevation="0dp"

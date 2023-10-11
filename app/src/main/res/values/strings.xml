@@ -3,4 +3,7 @@
     <string name="about_museum">О музее</string>
     <string name="tours">Индивидуальный\nмаршрут</string>
     <string name="games">Игры</string>
+    <string name="provider_gps">gps</string>
+    <string name="provider_network">net</string>
+    <string name="location_settings">123</string>
 </resources>
